@@ -32,6 +32,19 @@ const MODEL_MAPPING = {
   'deepseek-v3.2': 'deepseek-ai/deepseek-v3.2'
 };
 
+// Root endpoint - for API validation
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    message: 'DeepSeek-V3.2 Proxy via NVIDIA NIM',
+    endpoints: {
+      health: '/health',
+      models: '/v1/models',
+      chat: '/v1/chat/completions'
+    }
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ 
